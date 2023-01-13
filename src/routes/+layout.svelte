@@ -1,13 +1,13 @@
 <script lang="ts">
+	import { enhance, type SubmitFunction } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
+	import { page } from '$app/stores';
+	import Auth from '$lib/components/Auth.svelte';
 	import { supabaseClient } from '$lib/supabase';
+	import type { NavItem } from '$lib/types';
 	import { onMount } from 'svelte';
 	import '../app.css';
 	import type { PageData } from './$types';
-	import Auth from '$lib/components/Auth.svelte';
-	import { enhance, type SubmitFunction } from '$app/forms';
-	import { page } from '$app/stores';
-	import type { NavItem } from '$lib/types';
 
 	const navItems: Array<NavItem> = [
 		{ text: 'Home', url: '/' },
@@ -88,10 +88,10 @@
 		<nav
 			class="flex items-center justify-between w-full relative max-w-2xl border-base-100 mx-auto pt-8 pb-8 sm:pb-16 bg-opacity-60"
 		>
-			<div class="flex items-center justify-between ml-[-0.60rem]">
+			<div class="flex items-center ml-[-0.60rem] gap-4">
 				{#each navItems as navItem}
 					<a
-						class="px-3 py-2 rounded-lg flex items-center justify-center hover:ring-2 ring-base-300 hover:bg-base-200 transition-all {currentRoute ==
+						class="px-3 py-2 rounded-lg flex items-center justify-center hover:ring-2 ring-base-300 transition-all {currentRoute ==
 						navItem.url
 							? 'underline font-bold'
 							: ''}"
